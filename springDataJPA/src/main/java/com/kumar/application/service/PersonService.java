@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 
+
 import com.kumar.application.dao.PersonDAO;
 import com.kumar.application.model.Person;
 
@@ -18,5 +19,9 @@ public class PersonService {
 	public Person savePerson(Person person) {
 		person = personDAO.save(person);
 		return person;
+	}
+	
+	public Person getPersonById(Integer personId) {
+		return personDAO.findById(personId).orElse(null);
 	}
 }

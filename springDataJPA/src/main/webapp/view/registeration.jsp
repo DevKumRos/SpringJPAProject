@@ -8,11 +8,19 @@
 </head>
 <body>
 <h1>Registeration Page</h1></b></b>
-<form action="addPerson">
+<form action="addPerson" method="post">
 <b>Person Id	:</b><input type="text" name="personId"/></br>
 <b>UserName 	:</b><input type="text" name="userName"/></br>
 <b>Age 			:</b><input type="text" name="age"/></br>
 <input type="submit" value="Register"/>
+</form>
+</br>
+</br>
+</br>
+<h2>Get Person Information</h2>
+<form action="getPersonById">
+<input type="text" name="personId"/></br>
+<input type="submit" value="Get Person Detail"/>
 </form>
 </body>
 </html>
