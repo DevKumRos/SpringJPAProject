@@ -1,7 +1,10 @@
 package com.kumar.application.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 
 
 
@@ -23,5 +26,9 @@ public class PersonService {
 	
 	public Person getPersonById(Integer personId) {
 		return personDAO.findById(personId).orElse(null);
+	}
+	
+	public List<Person> getPersonByTech(String tech) {
+		return personDAO.findByTech(tech);
 	}
 }

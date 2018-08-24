@@ -9,6 +9,7 @@ public class Person {
 	private int personId;
 	private String userName;
 	private int age;
+	private String tech;
 	
 	public int getPersonId() {
 		return personId;
@@ -28,11 +29,20 @@ public class Person {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	public String getTech() {
+		return tech;
+	}
+	public void setTech(String tech) {
+		this.tech = tech;
+	}
 	@Override
 	public String toString() {
-		return "Person [personId=" + personId + ", name=" + userName + ", age="
-				+ age + "]";
+		return "Person [personId=" + personId + ", userName=" + userName
+				+ ", age=" + age + ", tech=" + tech + "]";
 	}
+	
+	
 	
 	
 	

@@ -1,5 +1,7 @@
 package com.kumar.application.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,19 @@ public class RegisterationController {
 		System.out.println("GetPerson service");
 		ModelAndView mv = new ModelAndView("displayPersonDetails");
 		mv.addObject("person", personService.getPersonById(personId));
+		return mv;
+	}
+	
+	@RequestMapping(value="/getPersonByTech", method=RequestMethod.GET)
+	public ModelAndView getPersonByTech(@RequestParam(name="tech") String tech){
+		System.out.println("GetPerson service By Tech : "+tech);
+		ModelAndView mv = new ModelAndView("displayPersonDetails");
+		List<Person> personList = personService.getPersonByTech(tech);
+		for(Person person : personList) {
+			System.out.println(person);
+			System.out.println("================================");
+		}
+		mv.addObject("personList", personList);
 		return mv;
 	}
 }
