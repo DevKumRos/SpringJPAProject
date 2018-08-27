@@ -19,6 +19,13 @@ public class RegisterationController {
 	private PersonService personService;
 	
 	@RequestMapping("/")
+	public ModelAndView displayHomePage(){
+		ModelAndView mv = new ModelAndView("homePage");
+		System.out.println("Home Page");
+		return mv;
+	}
+	
+	@RequestMapping("/register")
 	public ModelAndView displayRegisterationPage(){
 		ModelAndView mv = new ModelAndView("registeration");
 		System.out.println("Am here");
@@ -34,23 +41,63 @@ public class RegisterationController {
 	}
 	
 	@RequestMapping(value="/getPersonById", method=RequestMethod.GET)
-	public ModelAndView getPerson(@RequestParam(name="personId") Integer personId){
-		System.out.println("GetPerson service");
-		ModelAndView mv = new ModelAndView("displayPersonDetails");
-		mv.addObject("person", personService.getPersonById(personId));
+	public ModelAndView getPerson(@RequestParam(name="personId",defaultValue="000") Integer personId){
+		System.out.println("GetPerson service "+personId);
+		ModelAndView mv = null;
+		if(personId != null && !personId.equals(000)) {
+			mv = new ModelAndView("displayPersonDetails");
+			mv.addObject("person", personService.getPersonById(personId));
+		} else {
+			mv = new ModelAndView("searchUserById");
+		}
+		
 		return mv;
 	}
 	
 	@RequestMapping(value="/getPersonByTech", method=RequestMethod.GET)
-	public ModelAndView getPersonByTech(@RequestParam(name="tech") String tech){
+	public ModelAndView getPersonByTech(@RequestParam(name="tech", defaultValue="NONE") String tech){
 		System.out.println("GetPerson service By Tech : "+tech);
-		ModelAndView mv = new ModelAndView("displayPersonDetails");
-		List<Person> personList = personService.getPersonByTech(tech);
-		for(Person person : personList) {
-			System.out.println(person);
-			System.out.println("================================");
+		ModelAndView mv = null;
+		if( tech != null && tech.equalsIgnoreCase("NONE") ) {
+			mv = new ModelAndView("searchUserByTech");
+		}else {
+			mv = new ModelAndView("displayPersonDetails");
+			List<Person> personList = personService.getPersonByTech(tech);
+			for(Person person : personList) {
+				System.out.println(person);
+				System.out.println("================================");
+			}
+			mv.addObject("personList", personList);
 		}
-		mv.addObject("personList", personList);
+		return mv;
+	}
+	
+	@RequestMapping(value="/getPersonByAgeGrt", method=RequestMethod.GET)
+	public ModelAndView getPersonByAgeGrt(@RequestParam(name="age",defaultValue="000") Integer age){
+		System.out.println("GetPerson service "+age);
+		ModelAndView mv = null;
+		if(age != null && !age.equals(000)) {
+			mv = new ModelAndView("displayPersonDetails");
+			mv.addObject("personList", personService.getPersonByAgeGrt(age));
+		} else {
+			mv = new ModelAndView("searchByAge");
+		}
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="/getPersonByAgeSorted", method=RequestMethod.GET)
+	public ModelAndView getPersonByAgeSorted(@RequestParam(name="age",defaultValue="000") Integer age){
+		System.out.println("GetPerson service "+age);
+		ModelAndView mv = null;
+		if(age != null && !age.equals(000)) {
+			mv = new ModelAndView("displayPersonDetails");
+			mv.addObject("personList", personService.getPersonByAgeSorted(age));
+		} else {
+			mv = new ModelAndView("searchByAge");
+		}
+		
 		return mv;
 	}
 }

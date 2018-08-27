@@ -15,22 +15,5 @@
 <b>Technology 			:</b><input type="text" name="tech"/></br>
 <input type="submit" value="Register"/>
 </form>
-</br>
-</br>
-</br>
-<h2>Get Person Information By Id</h2>
-<form action="getPersonById">
-<input type="text" name="personId"/><br></br>
-<input type="submit" value="Get Person Detail"/>
-</form>
-
-</br>
-</br>
-</br>
-<h2>Get Person Information By Tech</h2>
-<form action="getPersonByTech">
-<input type="text" name="tech"/><br></br>
-<input type="submit" value="List of Person Detail"/>
-</form>
 </body>
 </html>

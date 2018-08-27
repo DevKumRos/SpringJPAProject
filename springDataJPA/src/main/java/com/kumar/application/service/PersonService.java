@@ -31,4 +31,12 @@ public class PersonService {
 	public List<Person> getPersonByTech(String tech) {
 		return personDAO.findByTech(tech);
 	}
+	
+	public List<Person> getPersonByAgeGrt(int age) {
+		return personDAO.findByAgeGreaterThan(age);
+	}
+	
+	public List<Person> getPersonByAgeSorted(int age) {
+		return personDAO.findByAgeSorted(age);
+	}
 }
