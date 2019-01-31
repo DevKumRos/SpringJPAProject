@@ -3,6 +3,7 @@ package com.kumar.application.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,8 @@ import com.kumar.application.model.Person;
 import com.kumar.application.service.PersonService;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/api")
+@CrossOrigin(origins = {"http://localhost:4200"})
 public class PeopleRestService {
 
 	@Autowired
